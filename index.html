@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tank Trouble</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #game-board {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+        }
+
+        .tank {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+        }
+
+        #tank1 {
+            background-color: red;
+        }
+
+        #tank2 {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-board">
+        <div class="tank" id="tank1" style="top: 50px; left: 50px;"></div>
+        <div class="tank" id="tank2" style="top: 300px; left: 300px;"></div>
+    </div>
+
+    <script>
+        const tank1 = document.getElementById('tank1');
+        const tank2 = document.getElementById('tank2');
+
+        document.addEventListener('keydown', (event) => {
+            moveTank(event.key, tank1);
+            moveTank(event.key, tank2);
+        });
+
+        function moveTank(key, tank) {
+            const step = 5;
+
+            switch (key) {
+                case 'ArrowUp':
+                    tank.style.top = Math.max(0, parseInt(tank.style.top) - step) + 'px';
+                    break;
+                case 'ArrowDown':
+                    tank.style.top = Math.min(370, parseInt(tank.style.top) + step) + 'px';
+                    break;
+                case 'ArrowLeft':
+                    tank.style.left = Math.max(0, parseInt(tank.style.left) - step) + 'px';
+                    break;
+                case 'ArrowRight':
+                    tank.style.left = Math.min(370, parseInt(tank.style.left) + step) + 'px';
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
